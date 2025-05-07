@@ -1,4 +1,3 @@
-
 % ==============================================================================
 %% Packages
 % ==============================================================================
@@ -174,22 +173,39 @@
 }
 
 %% Headline
+\makeatletter
+\providecommand{\insertframetitle}{}
+\makeatother
 \setbeamertemplate{headline}{
-    % If not the title page
+    \leavevmode
     \ifnum\value{framenumber}>0
-    \begin{beamercolorbox}[wd=\paperwidth, ht=30pt, center]{head}
-        \vspace{3.2pt}\hspace{260pt}\includegraphics[width=80pt]{src/logo_white.png}
-    \end{beamercolorbox}
+        \begin{beamercolorbox}[wd=\paperwidth,ht=28pt,dp=0pt]{head}
+            \vbox to 28pt{\vfil\hbox{%
+                \hspace{1em}%
+                \begin{minipage}[c]{0.75\paperwidth}
+                    \usebeamerfont{frametitle}%
+                    \usebeamercolor[fg]{frametitle}%
+                    \insertframetitle%
+                \end{minipage}%
+                \hfill
+                \begin{minipage}[c]{0.2\paperwidth}
+                    \raggedleft
+                    \includegraphics[height=18pt]{src/logo_white.png}%
+                    \hspace{2em}%
+                \end{minipage}%
+            }\vfil}
+        \end{beamercolorbox}
     \fi
 }
 
-%% Frame title
-\setbeamertemplate{frametitle}{
-    % If not the title page
-    \ifnum\value{framenumber}>0
-        \vspace{5pt}\hspace{-15pt}\usebeamerfont{frametitle}\usebeamercolor{frametitle}\insertframetitle
-    \fi
-}
+
+
+
+
+
+
+%% Frame title - 已经移到headline中，这里保持空白
+\setbeamertemplate{frametitle}{}
 
 %% Footline
 \setbeamertemplate{footline}
